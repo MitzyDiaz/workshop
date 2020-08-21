@@ -1,0 +1,34 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/mitzy-diazv/mitzy-diazv.html">
+
+<dom-module id="workshop-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hellou [[prop1]]!</h2>
+    <mitzy-diazv></mitzy-diazv>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class WorkshopApp extends Polymer.Element {
+      static get is() { return 'workshop-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'workshop-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(WorkshopApp.is, WorkshopApp);
+  </script>
+</dom-module>
