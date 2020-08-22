@@ -9,7 +9,9 @@
       }
     </style>
     <h2>Hellou [[prop1]]!</h2>
-    <mitzy-diazv></mitzy-diazv>
+    <mitzy-diazv title="Titulo fijo :D" input-value="hola fijo :D"></mitzy-diazv>
+    <mitzy-diazv title="[[title2]]" input-value="[[input2]]"></mitzy-diazv>
+    <mitzy-diazv title="{{inputValue}}" input-value="{{prop2}}" button-value="{{prop2}}"></mitzy-diazv>
   </template>
 
   <script>
@@ -24,7 +26,20 @@
           prop1: {
             type: String,
             value: 'workshop-app'
-          }
+          },
+           title2: {
+            type: String,
+            value: 'Titulo 2 a traves de propiedad ;)'
+          },
+           input2: {
+            type: String,
+            value: 'Input 2 a traves de propiedad ;)'
+          },
+          inputValue: {
+            type: String,
+            value: 'Ejemplo de double data binding'
+          },
+          prop2:String    
         };
       }
     }
