@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/mitzy-diazv/mitzy-diazv.html">
+<link rel="import" href="../../bower_components/login-element/login-element.html">
 
 <dom-module id="workshop-app">
     <template>
@@ -11,6 +12,11 @@
       mitzy-diazv{
         --mitzy-diazv: {
               margin: 1rem;
+          }
+      }
+      login-element{
+          --login-element:{
+              margin: 0px auto;
           }
       }
       mitzy-diazv:nth-child(2){
@@ -27,8 +33,9 @@
           background: rgb(255, 91, 118);
       }
     </style>
-    <h2>Hola [[prop1]]</h2>
-    <div>
+    <login-element></login-element>
+    <login-element encendido></login-element>
+    <div hidden$="[[encendido2]]">
     <mitzy-diazv title="Titulo fijo :D" input-value="hola fijo :D" class="rosita"></mitzy-diazv>
     <mitzy-diazv title="[[title2]]" input-value="[[input2]]"></mitzy-diazv>
     <mitzy-diazv title="{{inputValue}}" input-value="{{prop2}}" button-value="{{prop2}}">
@@ -64,7 +71,11 @@
                         type: String,
                         value: 'Ejemplo de double data binding'
                     },
-                    prop2: String
+                    prop2: String,
+                    encendido2: {
+                        type: Boolean,
+                        value: false
+                    }
                 };
             }
         }
