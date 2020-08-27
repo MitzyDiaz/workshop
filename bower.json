@@ -5,7 +5,7 @@
     "dependencies": {
         "polymer": "Polymer/polymer#^2.0.0",
         "mitzy-diazv": "https://github.com/MitzyDiaz/mitzy-diazv.git#1.0.3",
-        "login-element": "https://github.com/MitzyDiaz/login-element.git#1.0.1"
+        "login-element": "https://github.com/MitzyDiaz/login-element.git#1.0.2"
     },
     "devDependencies": {
         "web-component-tester": "Polymer/web-component-tester#^6.0.0",
