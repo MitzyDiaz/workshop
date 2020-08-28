@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/mitzy-diazv/mitzy-diazv.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="workshop-app">
     <template>
@@ -26,8 +27,16 @@
       .rosita{
           background: rgb(255, 91, 118);
       }
+      .pokeimg{
+          width: 200px;
+          height: 200px;
+      }
+      paper-card{
+          margin: 30px;
+      }
     </style>
     <h2>Hola [[prop1]]</h2>
+
     <div>
     <mitzy-diazv title="Titulo fijo :D" input-value="hola fijo :D" class="rosita"></mitzy-diazv>
     <mitzy-diazv title="[[title2]]" input-value="[[input2]]"></mitzy-diazv>
@@ -35,7 +44,26 @@
         <p>Hola Mitzy</p>
     </mitzy-diazv>
     </div>
-  </template>
+
+    <iron-ajax 
+    auto
+    url="https://pokeapi.co/api/v2/pokemon/?limit=50"
+    handle-as="json"
+    on-response="handleResponse">
+    </iron-ajax>
+        <template is="dom-repeat" items="{{pokePrac}}">
+        <paper-card elevation="2">
+            <br>
+            <div class="card-content">
+                <img class="pokeimg" src="{{item.url}}">
+                <p>{{item.name}}</p>
+                <p>#{{item.id}}</p>
+            </div>
+        </paper-card>
+        </template>
+    </template>
+
+
 
     <script>
         /**
@@ -64,11 +92,32 @@
                         type: String,
                         value: 'Ejemplo de double data binding'
                     },
-                    prop2: String
+                    prop2: String,
+                    pokePrac: {
+                        type: Array,
+                        value: []
+                    }
                 };
+            }
+            handleResponse(e) {
+                /*this.pokePrac = e.detail.response.results;
+                console.log(this.pokePrac);*/
+                let pokemons = e.detail.response.results;
+                let poke = [];
+                pokemons.forEach((pokemon, index) => {
+                    //insertamos valores a la api con push
+                    poke.push({
+                        name: pokemon.name,
+                        id: index + 1,
+                        url: `https://pokeres.bastionbot.org/images/pokemon/${index + 1}.png`
+                    });
+                });
+                this.pokePrac = poke;
+                console.log(e.detail.response.results);
             }
         }
 
         window.customElements.define(WorkshopApp.is, WorkshopApp);
     </script>
+</dom-module>
 </dom-module>

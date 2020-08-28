@@ -1,0 +1,94 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/mitzy-diazv/mitzy-diazv.html">
+<link rel="import" href="../../bower_components/login-element/login-element.html">
+
+<dom-module id="workshop-app">
+    <template>
+    <style>
+      :host {
+        display: block;
+        padding: 1rem;
+      }
+      mitzy-diazv{
+        --mitzy-diazv: {
+              margin: 1rem;
+          }
+      }
+      login-element{
+          --login-element:{
+              margin: 0px auto;
+          }
+      }
+      mitzy-diazv:nth-child(2){
+        --mitzy-diazv-paper-card: {
+              background: yellow;
+          }
+      }
+      mitzy-diazv:nth-child(3){
+        --mitzy-diazv-paper-card: {
+              background: blue;
+          }
+      }
+      .rosita{
+          background: rgb(255, 91, 118);
+      }
+    </style>
+    <div hidden$="[[mostrarEncendido]]">
+        <login-element on-user-log-changed="algo2"></login-element>
+    </div>
+    <div hidden$="[[! mostrarEncendido]]">
+            <mitzy-diazv title="Titulo fijo :D" input-value="hola fijo :D" class="rosita"></mitzy-diazv>
+            <mitzy-diazv title="[[title2]]" input-value="[[input2]]"></mitzy-diazv>
+            <mitzy-diazv title="{{inputValue}}" input-value="{{prop2}}" button-value="{{prop2}}">
+                <p>Hola Mitzy</p>
+            </mitzy-diazv>
+    </div>
+  </template>
+
+    <script>/**
+ * @customElement
+ * @polymer
+ */
+class WorkshopApp extends Polymer.Element {
+  static get is() {
+    return 'workshop-app';
+  }
+
+  static get properties() {
+    return {
+      prop1: {
+        type: String,
+        value: 'Mitzy Diaz'
+      },
+      title2: {
+        type: String,
+        value: 'Titulo 2 a traves de propiedad ;'
+      },
+      input2: {
+        type: String,
+        value: 'Input 2 a traves de propiedad ;'
+      },
+      inputValue: {
+        type: String,
+        value: 'Ejemplo de double data binding'
+      },
+      prop2: String,
+      mostrarEncendido: {
+        type: Boolean,
+        value: false,
+        notify: true
+      }
+    };
+  }
+
+  algo2(e) {
+    if (e.detail.value) {
+      alert("Hola, vamos a encender los cards por ti :D");
+      this.mostrarEncendido = true;
+    }
+  }
+
+}
+
+window.customElements.define(WorkshopApp.is, WorkshopApp);</script>
+</dom-module>
